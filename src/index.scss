@@ -1,0 +1,25 @@
+/* general reset */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+.app {
+  margin: auto;
+}
+
+a,
+a:hover,
+a:active,
+a:visited {
+  color: #000;
+  text-decoration: none;
+}
