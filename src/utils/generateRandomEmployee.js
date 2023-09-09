@@ -3,10 +3,8 @@ import { departments, states } from '../constants/Constants';
 function generateRandomName() {
   const firstNames = ['John', 'Jane', 'David', 'Emma', 'Michael', 'Olivia'];
   const lastNames = ['Smith', 'Johnson', 'Brown', 'Taylor', 'Lee', 'Wilson'];
-
   const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];
   const randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-
   return `${randomFirstName} ${randomLastName}`;
 }
 
@@ -25,10 +23,11 @@ function generateRandomZipCode() {
   const max = 99999;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 let currentId = 0;
+
 export default function generateRandomEmployee() {
   return {
-    // eslint-disable-next-line no-plusplus
     id: ++currentId,
     firstName: generateRandomName().split(' ')[0],
     lastName: generateRandomName().split(' ')[1],

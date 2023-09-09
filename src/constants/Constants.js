@@ -1,4 +1,3 @@
-// constants.js
 export const states = [
   { value: 'AL', label: 'Alabama' },
   { value: 'AK', label: 'Alaska' },

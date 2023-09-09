@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, MenuItem, Grid } from '@mui/material';
-
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -8,18 +7,17 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
-
 import { Link as RouterLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
-import Modal from 'modal-pkg-opc';
 import { departments, states } from '../../constants/Constants';
 import { addEmployee } from '../../state/employeeSlice';
+import ModalComponent from '../../components/ModalComponent/ModalComponent';
 
 export default function CreateEmployee() {
   const [openModal, setOpenModal] = useState(false);
   const dispatch = useDispatch();
   const employees = useSelector((state) => state.employees);
+  const [modalMessage, setModalMessage] = useState('');
   const initialValues = {
     firstName: '',
     lastName: '',
@@ -56,7 +54,8 @@ export default function CreateEmployee() {
     const lastId = employees[employees.length - 1].id || 0;
     const employee = { ...values, id: lastId + 1 };
     dispatch(addEmployee(employee));
-    // display Modal
+    // Set the modal message and open the modal
+    setModalMessage('Employee added successfully!');
     setOpenModal(true);
     resetForm();
   };
@@ -136,9 +135,8 @@ export default function CreateEmployee() {
                       slotProps={{
                         textField: {
                           fullWidth: true,
-                          label: 'Birth date',
+                          label: 'Date de naissance',
                           error: Boolean(touched.dateOfBirth) && Boolean(errors.dateOfBirth),
-                          helperText: touched.dateOfBirth && errors.dateOfBirth,
                         },
                       }}
                     />
@@ -163,14 +161,12 @@ export default function CreateEmployee() {
                           fullWidth: true,
                           label: 'Start Date',
                           error: Boolean(touched.startDate) && Boolean(errors.startDate),
-                          helperText: touched.startDate && errors.startDate,
                         },
                       }}
                     />
                   </DemoContainer>
                 </LocalizationProvider>
               </Grid>
-
               <Grid item xs={12}>
                 <Grid container padding={2} component="fieldset">
                   <legend>Address</legend>
@@ -238,7 +234,6 @@ export default function CreateEmployee() {
                   </Grid>
                 </Grid>
               </Grid>
-
               <Grid item xs={12}>
                 <TextField
                   fullWidth
@@ -267,9 +262,7 @@ export default function CreateEmployee() {
           </form>
         )}
       </Formik>
-      {openModal && (
-        <Modal message="Employee added successfully!" closeModal={() => setOpenModal(false)} />
-      )}
+      <ModalComponent open={openModal} onClose={() => setOpenModal(false)} content={modalMessage} />
     </Box>
   );
 }
