@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, MenuItem, Grid } from '@mui/material';
-
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -8,10 +7,8 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
-
 import { Link as RouterLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
 import Modal from 'modal-jeremie';
 import { departments, states } from '../../constants/Constants';
 import { addEmployee } from '../../state/employeeSlice';
