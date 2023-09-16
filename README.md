@@ -65,3 +65,10 @@ Mon rôle a été de mettre l'application à niveau en utilisant React, de conve
 
 Le front-end sera lancé à l'URL:
 `http://localhost:3000/`.
+
+## Version
+React 18.2.0
+
+Redux 8.1.1
+
+npm 9.8.1
